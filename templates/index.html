@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Counter</title>
+    <style>
+        body {
+            background-image: url('https://www.example.com/path/to/your/background-image.jpg'); /* Use a background image related to Hindu mythology */
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            margin-top: 10%;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        button {
+            background-color: #FFA07A; /* Light Salmon color */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #FF6347; /* Tomato color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Divine Button Click Counter</h1>
+        <p>Count: {{ count }}</p>
+        <form action="{{ url_for('increment') }}" method="post" style="display:inline;">
+            <button type="submit">Increment</button>
+        </form>
+        <form action="{{ url_for('reset') }}" method="post" style="display:inline;">
+            <button type="submit">Reset</button>
+        </form>
+    </div>
+</body>
+</html>
