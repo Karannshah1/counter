@@ -1,26 +1,32 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, jsonify
+from datetime import date
 
 app = Flask(__name__)
 
-# Global variable to store the count
-count = 0
+# Initialize counter and the last date it was updated
+counter = {'count': 0, 'date': date.today().isoformat()}
 
 @app.route('/')
 def index():
-    global count
-    return render_template('index.html', count=count)
+    return render_template('index.html')
 
 @app.route('/increment', methods=['POST'])
 def increment():
-    global count
-    count += 1
-    return redirect(url_for('index'))
+    global counter
+    current_date = date.today().isoformat()
+    if counter['date'] != current_date:
+        counter['count'] = 0
+        counter['date'] = current_date
+
+    counter['count'] += 1
+    return jsonify(count=counter['count'])
 
 @app.route('/reset', methods=['POST'])
 def reset():
-    global count
-    count = 0
-    return redirect(url_for('index'))
+    global counter
+    counter['count'] = 0
+    counter['date'] = date.today().isoformat()
+    return jsonify(count=counter['count'])
 
-if __name__ == "__main__":
-    app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
